@@ -7,6 +7,11 @@ let inputText = document.getElementById('title');
 // Grab Button Inside of Form
 let submitButton = document.querySelector('#add-todo > button');
 
+// Grab All Delete Buttons From Every list item
+let deleteButtons = document.querySelectorAll('li');
+
+
+
 // Add Event Listener on Button Inside of Form
 submitButton.addEventListener('click', (e) => {
  // Prevent Form Default Behavior
@@ -38,4 +43,16 @@ submitButton.addEventListener('click', (e) => {
  } else {
     alert('Please Enter a Value in the input box!')
  }
+    // Clear Value of Input Field After Submit Button Clicked
+    inputText.value = '';
 })
+
+// Loop Over Delete Buttons and Add Event Listener
+for (let i = 0; i < deleteButtons.length; i++) {
+  let deleteItemButton = deleteButtons[i].lastElementChild;
+
+  deleteItemButton.addEventListener('click', (e) => {
+    // Remove Child Item From List
+    listOfItems.removeChild(deleteButtons[i]);
+  })
+}
